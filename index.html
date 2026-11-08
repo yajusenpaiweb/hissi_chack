@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>必死チェッカー</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="site-header">
+  <div class="wrap">
+    <h1>必死チェッカー<span>- ID検索・書き込み集計ツール</span></h1>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="tabs">
+    <button class="active" onclick="switchTab('search',this)">🔍 ID検索</button>
+    <button onclick="switchTab('ranking',this)">📊 ランキング</button>
+    <button onclick="switchTab('import',this)">📥 ログ投入</button>
+  </div>
+
+  <!-- ID検索 -->
+  <div class="tab-content" id="tab-search">
+    <div class="search-box">
+      <div class="search-row">
+        <div class="field">
+          <span>ユーザーID</span>
+          <input type="text" id="q-id" placeholder="例: AbCdEfGh0">
+        </div>
+        <div class="field">
+          <span>日付 (任意)</span>
+          <input type="text" id="q-date" placeholder="例: 2024/01/15">
+        </div>
+        <div class="field">
+          <span>板名 (任意)</span>
+          <input type="text" id="q-board" placeholder="例: livejupiter">
+        </div>
+        <button class="btn" onclick="doSearch()">検索</button>
+      </div>
+    </div>
+    <div id="search-result"></div>
+  </div>
+
+  <!-- ランキング -->
+  <div class="tab-content" id="tab-ranking" style="display:none">
+    <div class="search-box">
+      <div class="search-row">
+        <div class="field">
+          <span>日付</span>
+          <input type="text" id="r-date" placeholder="例: 2024/01/15">
+        </div>
+        <div class="field">
+          <span>板名 (任意)</span>
+          <input type="text" id="r-board" placeholder="例: livejupiter">
+        </div>
+        <button class="btn" onclick="doRanking()">表示</button>
+      </div>
+    </div>
+    <div id="ranking-result"></div>
+  </div>
+
+  <!-- ログ投入 -->
+  <div class="tab-content" id="tab-import" style="display:none">
+    <div class="search-box">
+      <label>スレッドログを貼り付けてインポート</label>
+      <div class="import-meta">
+        <input type="text" id="imp-board" placeholder="板名 (例: livejupiter)">
+        <input type="text" id="imp-tid" placeholder="スレッドID (例: 1704067200)">
+        <input type="text" id="imp-title" placeholder="スレッドタイトル">
+      </div>
+      <div class="import-area">
+        <textarea id="imp-raw" placeholder="スレッドのログをここに貼り付けてください&#10;&#10;対応形式:&#10;1: 名無しさん 2024/01/01(月) 12:00:00.00 ID:xxxxxxxx&#10; 本文...&#10;&#10;またはdat形式 (タブ区切り)"></textarea>
+      </div>
+      <button class="btn" onclick="doImport()">インポート実行</button>
+      <div id="import-msg"></div>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    必死チェッカー | ログ集計ツール
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
